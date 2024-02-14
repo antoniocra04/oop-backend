@@ -1,11 +1,14 @@
 ﻿using oop_backend.Models.Utils;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Net;
 
 namespace oop_backend.Models
 {
     /// <summary>
     /// Класс покупатель
     /// </summary>
+    [Table("customers")]
     public class Customer
     {
         /// <summary>
@@ -19,14 +22,14 @@ namespace oop_backend.Models
         /// </summary>
         [StringLength(200, ErrorMessage = "Имя должно быть меньше 200 символов")]
         private string _fullname;
-        public string FullName { get { return _fullname; } }
+        public string Fullname { get { return _fullname; } set { _fullname = value; } }
 
         /// <summary>
         /// адресс покупателя
         /// </summary>
-        [StringLength(500 , ErrorMessage = "Адрес должен быть меньше 500 символов")]
+        [StringLength(500, ErrorMessage = "Адрес должен быть меньше 500 символов")]
         private string _adress;
-        public string Adress { get { return _adress; } }
+        public string Adress { get { return _adress; } set { _adress = value; } }
 
         /// <summary>
         /// Конструктор
