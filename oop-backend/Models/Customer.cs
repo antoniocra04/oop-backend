@@ -1,47 +1,43 @@
 ﻿using oop_backend.Models.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Net;
 
 namespace oop_backend.Models
 {
     /// <summary>
-    /// Класс покупатель
+    /// Хранит информацию о покупателе.
     /// </summary>
     [Table("customers")]
     public class Customer
     {
         /// <summary>
-        /// id покупателя
+        /// Id покупателя.
         /// </summary>
-        private readonly int _id;
-        public int Id { get { return _id; } }
+        public int Id { get; }
 
         /// <summary>
-        /// полное имя покупателя
+        /// Полное имя покупателя.
         /// </summary>
         [StringLength(200, ErrorMessage = "Имя должно быть меньше 200 символов")]
-        private string _fullname;
-        public string Fullname { get { return _fullname; } set { _fullname = value; } }
+        public string Fullname { get; set; }
 
         /// <summary>
-        /// адресс покупателя
+        /// Адресс покупателя.
         /// </summary>
         [StringLength(500, ErrorMessage = "Адрес должен быть меньше 500 символов")]
-        private string _adress;
-        public string Adress { get { return _adress; } set { _adress = value; } }
+        public string Address { get; set; }
 
         /// <summary>
-        /// Конструктор
+        /// Создает экземпляр класса <see cref="Customer"/>
         /// </summary>
-        /// <param name="fullname">полное имя</param>
-        /// <param name="adress">адресс</param>
-        public Customer(string fullname, string adress)
+        /// <param name="fullname">Полное имя.</param>
+        /// <param name="address">Адресс.</param>
+        public Customer(string fullname, string address)
         {
-            this._id = new IdGenerator().GetId();
+            this.Id = new IdGenerator().GetId();
 
-            this._fullname = fullname;
-            this._adress = adress;
+            this.Fullname = fullname;
+            this.Address = address;
         }
     }
 }

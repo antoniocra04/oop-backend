@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using FakeItEasy;
-using FluentAssertions;
+﻿using FluentAssertions;
 using oop_backend.Controllers;
 using Xunit;
 
 namespace oop_backend_test.Controllers
 {
+    /// <summary>
+    /// Тесты на ItemController.
+    /// </summary>
     public class ItemControllerTests
     {
+        /// <summary>
+        /// Проверка createItem.
+        /// </summary>
         [Fact]
-        public void ItemController_CreateItem_ReturnOK()
+        public void CreateItem_ReturnOK()
         {
             var controller = new ItemController();
             var result = controller.CreateItem("a", "b", 1);

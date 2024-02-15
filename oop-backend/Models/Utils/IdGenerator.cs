@@ -1,20 +1,20 @@
 ﻿namespace oop_backend.Models.Utils
 {
     /// <summary>
-    /// Класс генератора id
+    /// Класс генератора id.
     /// </summary>
-    public class IdGenerator
+    public static class IdGenerator
     {
         /// <summary>
-        /// Статический счетчик
+        /// Статический счетчик.
         /// </summary>
         private static int _id;
 
         /// <summary>
-        /// Получить id
+        /// Генерирует id.
         /// </summary>
         /// <returns>id</returns>
-        public int GetId()
+        public static int GetId()
         {
             _id++;
             return _id;

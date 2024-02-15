@@ -5,52 +5,47 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace oop_backend.Models
 {
     /// <summary>
-    /// Класс товара
+    /// Хранит информацию о товаре.
     /// </summary>
     [Table("items")]
     public class Item
     {
         /// <summary>
-        /// id товара
+        /// Id товара.
         /// </summary>
-        private readonly int _id;
-        public int Id { get { return _id; } }
+        public int Id { get; }
 
         /// <summary>
-        /// наименование товара
+        /// Наименование товара.
         /// </summary>
         [StringLength(200, ErrorMessage = "Имя должно быть меньше 200 символов")]
-        private string _name;
-        public string Name { get { return _name; } set { _name = value; } }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Информация о товаре
+        /// Информация о товаре.
         /// </summary>
         [StringLength(1000, ErrorMessage = "Информация должна быть меньше 1000 символов")]
-        private string _info;
-        public string Info { get { return _info; } set { _info = value; } }
+        public string Info { get; set; }
 
         /// <summary>
-        /// Цена товара
+        /// Цена товара.
         /// </summary>
         [Range(0, 100000, ErrorMessage = "Цена должна быть в диапазоне от 0 до 100000")]
-        private int _cost;
-        public int Cost { get { return _cost; } set { _cost = value; } }
+        public int Cost { get; set; }
 
         /// <summary>
-        /// Конструктор
+        /// Создает экземпляр класса <see cref="Item"/>
         /// </summary>
-        /// <param name="name">имя</param>
-        /// <param name="info">информация</param>
-        /// <param name="cost">цена</param>
-        /// <param name="category">категория</param>
+        /// <param name="name">Имя продукта.</param>
+        /// <param name="info">Информация продукта.</param>
+        /// <param name="cost">Цена продукта.</param>
         public Item(string name, string info, int cost)
         {
-            this._id = new IdGenerator().GetId();
+            this.Id = new IdGenerator().GetId();
 
-            this._name = name;
-            this._info = info;
-            this._cost = cost;
+            this.Name = name;
+            this.Info = info;
+            this.Cost = cost;
         }
     }
 }
