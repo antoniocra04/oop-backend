@@ -41,7 +41,7 @@ namespace oop_backend.Models
         /// <param name="cost">Цена продукта.</param>
         public Item(string name, string info, int cost)
         {
-            this.Id = new IdGenerator().GetId();
+            this.Id = IdGenerator.GetId();
 
             this.Name = name;
             this.Info = info;

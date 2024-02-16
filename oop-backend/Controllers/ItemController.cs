@@ -15,7 +15,7 @@ namespace oop_backend.Controllers
         /// <summary>
         /// БД.
         /// </summary>
-        private readonly DBContext dbContext;
+        private readonly DBContext _dbContext;
 
         /// <summary>
         /// Создает экземпляр класса <see cref="ItemController"/>
@@ -23,7 +23,7 @@ namespace oop_backend.Controllers
         /// <param name="dbContext">БД.</param>
         public ItemController(DBContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace oop_backend.Controllers
         [HttpGet("getAllItems")]
         public ActionResult<DbSet<Item>> GetAllItems()
         {
-            return dbContext.Items;
+            return _dbContext.Items;
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace oop_backend.Controllers
         [HttpPost("createItem")]
         public ActionResult<Item> CreateItem(Item newItem)
         {
-            dbContext.Items.Add(newItem);
-            dbContext.SaveChanges();
+            _dbContext.Items.Add(newItem);
+            _dbContext.SaveChanges();
 
             return newItem;
         }
@@ -59,7 +59,7 @@ namespace oop_backend.Controllers
         [HttpPut("changeItem/{id}")]
         public ActionResult<Item> ChangeItem(int id, Item updatedItem)
         {
-            var item = dbContext.Items.SingleOrDefault(item => item.Id == id);
+            var item = _dbContext.Items.SingleOrDefault(item => item.Id == id);
 
             if (item == null)
             {
@@ -70,7 +70,7 @@ namespace oop_backend.Controllers
             item.Info = updatedItem.Info;
             item.Cost = updatedItem.Cost;
 
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             return updatedItem;
         }

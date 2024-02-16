@@ -34,7 +34,7 @@ namespace oop_backend.Models
         /// <param name="address">Адресс.</param>
         public Customer(string fullname, string address)
         {
-            this.Id = new IdGenerator().GetId();
+            this.Id = IdGenerator.GetId();
 
             this.Fullname = fullname;
             this.Address = address;
