@@ -18,8 +18,8 @@ namespace oop_backend_test.Controllers
             var controller = new CustomerController();
             var result = controller.CreateCustomer("Anton", "Tomsk");
 
-            result.Value.FullName.Should().Be("Anton");
-            result.Value.Adress.Should().Be("Tomsk");
+            result.Value.Fullname.Should().Be("Anton");
+            result.Value.Address.Should().Be("Tomsk");
         }
     }
 }

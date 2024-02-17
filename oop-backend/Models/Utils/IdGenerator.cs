@@ -13,7 +13,7 @@
         /// <summary>
         /// Генерирует id.
         /// </summary>
-        /// <returns>id</returns>
+        /// <returns>id.</returns>
         public static int GetId()
         {
             _id++;

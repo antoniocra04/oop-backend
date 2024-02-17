@@ -22,7 +22,7 @@ namespace oop_backend.Models
         public string Fullname { get; set; }
 
         /// <summary>
-        /// Адресс покупателя.
+        /// Адрес покупателя.
         /// </summary>
         [StringLength(500, ErrorMessage = "Адрес должен быть меньше 500 символов")]
         public string Address { get; set; }
@@ -31,7 +31,7 @@ namespace oop_backend.Models
         /// Создает экземпляр класса <see cref="Customer"/>
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
-        /// <param name="address">Адресс.</param>
+        /// <param name="address">Адрес.</param>
         public Customer(string fullname, string address)
         {
             this.Id = IdGenerator.GetId();

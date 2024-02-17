@@ -13,23 +13,23 @@ namespace oop_backend.Controllers
     public class CustomerController : ControllerBase
     {
         /// <summary>
-        /// БД.
+        /// Контекст данных для БД.
         /// </summary>
         private readonly DBContext _dbContext;
 
         /// <summary>
         /// Создает экземпляр класса <see cref="CustomerController"/>
         /// </summary>
-        /// <param name="dbContext">БД.</param>
+        /// <param name="dbContext">Контекст данных для БД.</param>
         public CustomerController(DBContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
         /// <summary>
-        /// Эндпоинт получения всех покупателей.
+        /// Эндпоинт для получения всех покупателей.
         /// </summary>
-        /// <returns>DbSet<Customer></returns>
+        /// <returns>Список всех покупателей</returns>
         [HttpGet("getAllCustomers")]
         public ActionResult<DbSet<Customer>> GetAllCustomers()
         {
@@ -40,7 +40,7 @@ namespace oop_backend.Controllers
         /// Эндпоинт для создания нового покупателя.
         /// </summary>
         /// <param name="newCustomer">Новый покупатель.</param>
-        /// <returns>Customer</returns>
+        /// <returns>Новый покупатель.</returns>
         [HttpPost("createCustomer")]
         public ActionResult<Customer> CreateCustomer(Customer newCustomer)
         {
@@ -54,8 +54,8 @@ namespace oop_backend.Controllers
         /// Эндпоинт для изменения покупателя.
         /// </summary>
         /// <param name="id">Id покупателя</param>
-        /// <param name="updatedCustomer">Измененый покупатель</param>
-        /// <returns>Customer</returns>
+        /// <param name="updatedCustomer">Изменненый покупатель.</param>
+        /// <returns>Измененный покупатель</returns>
         [HttpPut("changeCustomer/{id}")]
         public ActionResult<Customer> ChangeCustomer(int id, Customer updatedCustomer)
         {

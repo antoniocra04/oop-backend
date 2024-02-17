@@ -30,7 +30,7 @@ namespace oop_backend.Context
         /// <summary>
         /// Метод переопределения стандартных настроек бд.
         /// </summary>
-        /// <param name="modelBuilder">Класс для конфигурирования бд</param>
+        /// <param name="modelBuilder">Класс для конфигурирования бд.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Item>().HasAlternateKey(i => i.Id);

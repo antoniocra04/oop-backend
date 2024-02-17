@@ -13,14 +13,14 @@ namespace oop_backend.Controllers
     public class ItemController : ControllerBase
     {
         /// <summary>
-        /// БД.
+        /// Контекст данных для БД.
         /// </summary>
         private readonly DBContext _dbContext;
 
         /// <summary>
         /// Создает экземпляр класса <see cref="ItemController"/>
         /// </summary>
-        /// <param name="dbContext">БД.</param>
+        /// <param name="dbContext">Контекст данных для БД.</param>
         public ItemController(DBContext dbContext)
         {
             this._dbContext = dbContext;
@@ -29,7 +29,7 @@ namespace oop_backend.Controllers
         /// <summary>
         /// Эндпоинт для получения всех продуктов.
         /// </summary>
-        /// <returns>DbSet<Item></returns>
+        /// <returns>Список продуктов</returns>
         [HttpGet("getAllItems")]
         public ActionResult<DbSet<Item>> GetAllItems()
         {
@@ -40,7 +40,7 @@ namespace oop_backend.Controllers
         /// Эндпоинт для создания продукта.
         /// </summary>
         /// <param name="newItem">Новый продукт.</param>
-        /// <returns>Item</returns>
+        /// <returns>Новый продукт.</returns>
         [HttpPost("createItem")]
         public ActionResult<Item> CreateItem(Item newItem)
         {
@@ -53,9 +53,9 @@ namespace oop_backend.Controllers
         /// <summary>
         /// Эндпоинт для изменения продукта.
         /// </summary>
-        /// <param name="id">Id продукта</param>
+        /// <param name="id">Id продукта.</param>
         /// <param name="updatedItem">Измененный продукт.</param>
-        /// <returns>Item</returns>
+        /// <returns>Измененный продукт.</returns>
         [HttpPut("changeItem/{id}")]
         public ActionResult<Item> ChangeItem(int id, Item updatedItem)
         {
