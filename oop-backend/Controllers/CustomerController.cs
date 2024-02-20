@@ -18,7 +18,7 @@ namespace oop_backend.Controllers
         private readonly DBContext _dbContext;
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="CustomerController"/>
+        /// Создает экземпляр класса.<see cref="CustomerController"/>
         /// </summary>
         /// <param name="dbContext">Контекст данных для БД.</param>
         public CustomerController(DBContext dbContext)
@@ -29,7 +29,7 @@ namespace oop_backend.Controllers
         /// <summary>
         /// Эндпоинт для получения всех покупателей.
         /// </summary>
-        /// <returns>Список всех покупателей</returns>
+        /// <returns>Список всех покупателей.</returns>
         [HttpGet("getAllCustomers")]
         public ActionResult<DbSet<Customer>> GetAllCustomers()
         {
@@ -53,9 +53,9 @@ namespace oop_backend.Controllers
         /// <summary>
         /// Эндпоинт для изменения покупателя.
         /// </summary>
-        /// <param name="id">Id покупателя</param>
+        /// <param name="id">Id покупателя.</param>
         /// <param name="updatedCustomer">Изменненый покупатель.</param>
-        /// <returns>Измененный покупатель</returns>
+        /// <returns>Измененный покупатель.</returns>
         [HttpPut("changeCustomer/{id}")]
         public ActionResult<Customer> ChangeCustomer(int id, Customer updatedCustomer)
         {
