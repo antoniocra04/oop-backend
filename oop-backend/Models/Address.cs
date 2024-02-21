@@ -1,7 +1,7 @@
 ﻿namespace oop_backend.Models
 {
     /// <summary>
-    /// Хранит информацию об адресе
+    /// Хранит информацию об адресе.
     /// </summary>
     public class Address
     {
