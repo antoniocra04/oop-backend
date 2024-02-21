@@ -15,7 +15,7 @@ namespace oop_backend.Models
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
-        public Customer(string fullname, string address)
+        public Customer(string fullname, Address address)
         {
             this.Id = IdGenerator.GetId();
 
@@ -38,6 +38,6 @@ namespace oop_backend.Models
         /// Адрес покупателя.
         /// </summary>
         [StringLength(500, ErrorMessage = "Адрес должен быть меньше 500 символов")]
-        public string Address { get; set; }
+        public Address Address { get; set; }
     }
 }
