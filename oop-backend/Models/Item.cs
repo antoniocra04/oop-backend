@@ -11,6 +11,21 @@ namespace oop_backend.Models
     public class Item
     {
         /// <summary>
+        /// Создает экземпляр класса <see cref="Item"/>
+        /// </summary>
+        /// <param name="name">Имя продукта.</param>
+        /// <param name="info">Информация продукта.</param>
+        /// <param name="cost">Цена продукта.</param>
+        public Item(string name, string info, int cost)
+        {
+            this.Id = IdGenerator.GetId();
+
+            this.Name = name;
+            this.Info = info;
+            this.Cost = cost;
+        }
+
+        /// <summary>
         /// Id товара.
         /// </summary>
         public int Id { get; }
@@ -32,20 +47,5 @@ namespace oop_backend.Models
         /// </summary>
         [Range(0, 100000, ErrorMessage = "Цена должна быть в диапазоне от 0 до 100000")]
         public int Cost { get; set; }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Item"/>
-        /// </summary>
-        /// <param name="name">Имя продукта.</param>
-        /// <param name="info">Информация продукта.</param>
-        /// <param name="cost">Цена продукта.</param>
-        public Item(string name, string info, int cost)
-        {
-            this.Id = IdGenerator.GetId();
-
-            this.Name = name;
-            this.Info = info;
-            this.Cost = cost;
-        }
     }
 }

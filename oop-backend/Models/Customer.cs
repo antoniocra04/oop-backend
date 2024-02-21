@@ -11,6 +11,19 @@ namespace oop_backend.Models
     public class Customer
     {
         /// <summary>
+        /// Создает экземпляр класса <see cref="Customer"/>
+        /// </summary>
+        /// <param name="fullname">Полное имя.</param>
+        /// <param name="address">Адрес.</param>
+        public Customer(string fullname, string address)
+        {
+            this.Id = IdGenerator.GetId();
+
+            this.Fullname = fullname;
+            this.Address = address;
+        }
+
+        /// <summary>
         /// Id покупателя.
         /// </summary>
         public int Id { get; }
@@ -26,18 +39,5 @@ namespace oop_backend.Models
         /// </summary>
         [StringLength(500, ErrorMessage = "Адрес должен быть меньше 500 символов")]
         public string Address { get; set; }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Customer"/>
-        /// </summary>
-        /// <param name="fullname">Полное имя.</param>
-        /// <param name="address">Адрес.</param>
-        public Customer(string fullname, string address)
-        {
-            this.Id = IdGenerator.GetId();
-
-            this.Fullname = fullname;
-            this.Address = address;
-        }
     }
 }

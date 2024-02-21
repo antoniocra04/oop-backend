@@ -10,6 +10,14 @@ namespace oop_backend.Context
     public class DBContext: DbContext
     {
         /// <summary>
+        /// Создает экземпляр класса <see cref="DBContext"/>
+        /// </summary>
+        /// <param name="options">Дополнительные параметры для бд.</param>
+        public DBContext(DbContextOptions options)
+            : base(options)
+        {}
+
+        /// <summary>
         /// Товары.
         /// </summary>
         public DbSet<Item> Items { get; set; }
@@ -18,14 +26,6 @@ namespace oop_backend.Context
         /// Покупатели.
         /// </summary>
         public DbSet<Customer> Customers { get; set; }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="DBContext"/>
-        /// </summary>
-        /// <param name="options">Дополнительные параметры для бд.</param>
-        public DBContext(DbContextOptions options)
-            : base(options)
-        {}
 
         /// <summary>
         /// Метод переопределения стандартных настроек бд.
