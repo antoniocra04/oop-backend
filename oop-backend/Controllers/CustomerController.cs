@@ -31,9 +31,17 @@ namespace oop_backend.Controllers
         /// </summary>
         /// <returns>Список всех покупателей.</returns>
         [HttpGet("getAllCustomers")]
-        public ActionResult<DbSet<Customer>> GetAllCustomers()
+        public ActionResult<List<CustomerDto>> GetAllCustomers()
         {
-            return _dbContext.Customers;
+            var Customers = _dbContext.Customers;
+            List<CustomerDto> result = new List<CustomerDto>();
+            Customers.ForEachAsync(customer =>
+            {
+                var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
+                result.Add(new CustomerDto(customer.Fullname, address, customer.Id));
+            });
+
+            return result;
         }
 
         /// <summary>
@@ -42,12 +50,13 @@ namespace oop_backend.Controllers
         /// <param name="newCustomer">Новый покупатель.</param>
         /// <returns>Новый покупатель.</returns>
         [HttpPost("createCustomer")]
-        public ActionResult<Customer> CreateCustomer(Customer newCustomer)
+        public ActionResult<Customer> CreateCustomer(CustomerDto newCustomer)
         {
-            _dbContext.Add(newCustomer);
+            _dbContext.Customers.Add(new Customer(newCustomer.Fullname, newCustomer.Address.Id));
+            _dbContext.Addresses.Add(newCustomer.Address);
             _dbContext.SaveChanges();
 
-            return newCustomer;
+            return StatusCode(200, newCustomer);
         }
 
         /// <summary>
@@ -67,10 +76,30 @@ namespace oop_backend.Controllers
             }
 
             customer.Fullname = updatedCustomer.Fullname;
-            customer.Address = updatedCustomer.Address;
 
             _dbContext.SaveChanges();
-            return updatedCustomer;
+            return StatusCode(200, updatedCustomer);
+        }
+
+        /// <summary>
+        /// Эндпоинт для удаления покупателя.
+        /// </summary>
+        /// <param name="id">Id покупателя.</param>
+        /// <returns></returns>
+        [HttpDelete("deleteItem/{id}")]
+        public ActionResult DeleteItem(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Customers.Remove(customer);
+            _dbContext.SaveChanges();
+
+            return StatusCode(200);
         }
     }
 }

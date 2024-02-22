@@ -1,4 +1,9 @@
-﻿namespace oop_backend.Models
+﻿using Newtonsoft.Json;
+using oop_backend.Models.Utils;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+
+namespace oop_backend.Models
 {
     /// <summary>
     /// Хранит информацию об адресе.
@@ -15,12 +20,18 @@
         /// <param name="apartment">Квартира.</param>
         public Address(int index, string country, string city, string building, string apartment)
         {
+            this.Id = IdGenerator.GetId();
             this.Index = index;
             this.Country = country;
             this.City = city;
             this.Building = building;
             this.Apartment = apartment;
         }
+
+        /// <summary>
+        /// Id покупателя.
+        /// </summary>
+        public int Id { get; }
 
         /// <summary>
         /// Индекс.

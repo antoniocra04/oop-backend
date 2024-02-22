@@ -74,5 +74,26 @@ namespace oop_backend.Controllers
 
             return updatedItem;
         }
+        
+        /// <summary>
+        /// Эндпоинт для удаления продукта.
+        /// </summary>
+        /// <param name="id">Id продукта.</param>
+        /// <returns></returns>
+        [HttpDelete("deleteItem/{id}")]
+        public ActionResult DeleteItem(int id)
+        {
+            var item = _dbContext.Items.SingleOrDefault(item => item.Id == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Items.Remove(item);
+            _dbContext.SaveChanges();
+
+            return StatusCode(200);
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace oop_backend.Models
 {
     /// <summary>
-    /// Категории товаров
+    /// Категории товаров.
     /// </summary>
     public enum CategoryType
     {

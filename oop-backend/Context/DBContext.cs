@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using oop_backend.Models;
+using System.Reflection.Metadata;
 
 namespace oop_backend.Context
 {
@@ -10,7 +11,7 @@ namespace oop_backend.Context
     public class DBContext: DbContext
     {
         /// <summary>
-        /// Создает экземпляр класса <see cref="DBContext"/>
+        /// Создает экземпляр класса <see cref="DBContext"/>.
         /// </summary>
         /// <param name="options">Дополнительные параметры для бд.</param>
         public DBContext(DbContextOptions options)
@@ -28,6 +29,11 @@ namespace oop_backend.Context
         public DbSet<Customer> Customers { get; set; }
 
         /// <summary>
+        /// Адреса.
+        /// </summary>
+        public DbSet<Address> Addresses { get; set; }
+
+        /// <summary>
         /// Метод переопределения стандартных настроек бд.
         /// </summary>
         /// <param name="modelBuilder">Класс для конфигурирования бд.</param>
@@ -35,6 +41,7 @@ namespace oop_backend.Context
         {
             modelBuilder.Entity<Item>().HasAlternateKey(i => i.Id);
             modelBuilder.Entity<Customer>().HasAlternateKey(c => c.Id);
+            modelBuilder.Entity<Address>().HasAlternateKey(a => a.Id);
         }
     }
 }
