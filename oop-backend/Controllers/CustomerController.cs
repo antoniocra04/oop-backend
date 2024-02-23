@@ -86,7 +86,7 @@ namespace oop_backend.Controllers
         /// </summary>
         /// <param name="id">Id покупателя.</param>
         /// <returns></returns>
-        [HttpDelete("deleteItem/{id}")]
+        [HttpDelete("deleteCustomer/{id}")]
         public ActionResult DeleteItem(int id)
         {
             var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);

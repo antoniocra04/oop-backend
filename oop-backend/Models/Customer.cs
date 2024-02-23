@@ -61,6 +61,7 @@ namespace oop_backend.Models
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
+        [JsonConstructor]
         public CustomerDto(string fullname, Address address)
         {
             this.Id = IdGenerator.GetId();

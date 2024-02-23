@@ -39,7 +39,7 @@ namespace oop_backend.Controllers
         /// </summary>
         /// <param name="id">Id адреса.</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult DeleteItem(int id)
         {
             var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == id);
