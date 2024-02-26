@@ -1,4 +1,6 @@
-﻿using oop_backend.Models.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using oop_backend.Models.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -49,6 +51,11 @@ namespace oop_backend.Models
         [Range(0, 100000, ErrorMessage = "Цена должна быть в диапазоне от 0 до 100000")]
         public int Cost { get; set; }
 
+        /// <summary>
+        /// Категория товара.
+        /// </summary>
+        [EnumDataType(typeof(CategoryType))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public CategoryType Category { get; set; }
     }
 }

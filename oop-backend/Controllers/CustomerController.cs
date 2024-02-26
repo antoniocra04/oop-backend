@@ -87,7 +87,7 @@ namespace oop_backend.Controllers
         /// <param name="id">Id покупателя.</param>
         /// <returns></returns>
         [HttpDelete("deleteCustomer/{id}")]
-        public ActionResult DeleteItem(int id)
+        public ActionResult DeleteCustomer(int id)
         {
             var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
 
@@ -95,7 +95,15 @@ namespace oop_backend.Controllers
             {
                 return NotFound();
             }
+            
+            var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
 
+            if (address == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Addresses.Remove(address);
             _dbContext.Customers.Remove(customer);
             _dbContext.SaveChanges();
 
