@@ -66,7 +66,7 @@ namespace oop_backend.Controllers
         /// <param name="updatedCustomer">Изменненый покупатель.</param>
         /// <returns>Измененный покупатель.</returns>
         [HttpPut("changeCustomer/{id}")]
-        public ActionResult<Customer> ChangeCustomer(int id, Customer updatedCustomer)
+        public ActionResult<Customer> ChangeCustomer(int id, CustomerDto updatedCustomer)
         {
             var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
 
@@ -76,6 +76,19 @@ namespace oop_backend.Controllers
             }
 
             customer.Fullname = updatedCustomer.Fullname;
+
+            var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
+
+            if (address == null)
+            {
+                return NotFound();
+            }
+
+            address.Index = updatedCustomer.Address.Index;
+            address.Country = updatedCustomer.Address.Country;
+            address.City = updatedCustomer.Address.City;
+            address.Building = updatedCustomer.Address.Building;
+            address.Apartment = updatedCustomer.Address.Apartment;
 
             _dbContext.SaveChanges();
             return StatusCode(200, updatedCustomer);
