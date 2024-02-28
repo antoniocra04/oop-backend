@@ -29,32 +29,32 @@ namespace oop_backend.Models
         }
 
         /// <summary>
-        /// Id покупателя.
+        /// Возвращает Id покупателя.
         /// </summary>
         public int Id { get; }
 
         /// <summary>
-        /// Индекс.
+        /// Возвращает и задает индекс.
         /// </summary>
         public int Index { get; set; }
 
         /// <summary>
-        /// Страна.
+        /// Возвращает и задает страну.
         /// </summary>
         public string Country { get; set; }
 
         /// <summary>
-        /// Город.
+        /// Возвращает и задает город.
         /// </summary>
         public string City { get; set; }
 
         /// <summary>
-        /// Дом.
+        /// Возвращает и задает дом.
         /// </summary>
         public string Building { get; set; }
 
         /// <summary>
-        /// Квартира.
+        /// Возвращает и задает квартиру.
         /// </summary>
         public string Apartment { get; set; }
 

@@ -29,30 +29,30 @@ namespace oop_backend.Models
         }
 
         /// <summary>
-        /// Id товара.
+        /// Возвращает Id товара.
         /// </summary>
         public int Id { get; }
 
         /// <summary>
-        /// Наименование товара.
+        /// Возвращает и задает наименование товара.
         /// </summary>
         [StringLength(200, ErrorMessage = "Имя должно быть меньше 200 символов")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Информация о товаре.
+        /// Возвращает и задает информацию о товаре.
         /// </summary>
         [StringLength(1000, ErrorMessage = "Информация должна быть меньше 1000 символов")]
         public string Info { get; set; }
 
         /// <summary>
-        /// Цена товара.
+        /// Возвращает и задает цену товара.
         /// </summary>
         [Range(0, 100000, ErrorMessage = "Цена должна быть в диапазоне от 0 до 100000")]
         public int Cost { get; set; }
 
         /// <summary>
-        /// Категория товара.
+        /// Возвращает и задает категорию товара.
         /// </summary>
         [EnumDataType(typeof(CategoryType))]
         [JsonConverter(typeof(StringEnumConverter))]

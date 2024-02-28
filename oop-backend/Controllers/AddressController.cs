@@ -6,6 +6,9 @@ using oop_backend.Context;
 
 namespace oop_backend.Controllers
 {
+    /// <summary>
+    /// Контроллер адресов.
+    /// </summary>
     [Route("api/address")]
     [ApiController]
     public class AddressController : ControllerBase
@@ -38,9 +41,9 @@ namespace oop_backend.Controllers
         /// Эндпоинт для удаления адреса.
         /// </summary>
         /// <param name="id">Id адреса.</param>
-        /// <returns></returns>
+        /// <returns>Статус запроса</returns>
         [HttpDelete("{id}")]
-        public ActionResult DeleteItem(int id)
+        public ActionResult DeleteAddress(int id)
         {
             var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == id);
 

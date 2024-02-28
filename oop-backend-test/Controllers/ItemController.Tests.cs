@@ -10,7 +10,7 @@ namespace oop_backend_test.Controllers
     public class ItemControllerTests
     {
         /// <summary>
-        /// Проверка createItem.
+        /// Проверка CreateItem.
         /// </summary>
         [Fact]
         public void CreateItem_ReturnOK()

@@ -6,7 +6,7 @@ namespace oop_backend.Context
 {
 
     /// <summary>
-    /// БД.
+    /// Контекст данных для БД.
     /// </summary>
     public class DBContext: DbContext
     {
@@ -39,9 +39,9 @@ namespace oop_backend.Context
         /// <param name="modelBuilder">Класс для конфигурирования бд.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Item>().HasAlternateKey(i => i.Id);
-            modelBuilder.Entity<Customer>().HasAlternateKey(c => c.Id);
-            modelBuilder.Entity<Address>().HasAlternateKey(a => a.Id);
+            modelBuilder.Entity<Item>().HasAlternateKey(item => item.Id);
+            modelBuilder.Entity<Customer>().HasAlternateKey(customer => customer.Id);
+            modelBuilder.Entity<Address>().HasAlternateKey(address => address.Id);
         }
     }
 }

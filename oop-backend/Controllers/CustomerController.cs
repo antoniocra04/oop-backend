@@ -18,7 +18,7 @@ namespace oop_backend.Controllers
         private readonly DBContext _dbContext;
 
         /// <summary>
-        /// Создает экземпляр класса.<see cref="CustomerController"/>
+        /// Создает экземпляр класса<see cref="CustomerController"/>
         /// </summary>
         /// <param name="dbContext">Контекст данных для БД.</param>
         public CustomerController(DBContext dbContext)
@@ -33,9 +33,9 @@ namespace oop_backend.Controllers
         [HttpGet("getAllCustomers")]
         public ActionResult<List<CustomerDto>> GetAllCustomers()
         {
-            var Customers = _dbContext.Customers;
+            var сustomers = _dbContext.Customers;
             List<CustomerDto> result = new List<CustomerDto>();
-            Customers.ForEachAsync(customer =>
+            сustomers.ForEachAsync(customer =>
             {
                 var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
                 result.Add(new CustomerDto(customer.Fullname, address, customer.Id));
@@ -63,7 +63,7 @@ namespace oop_backend.Controllers
         /// Эндпоинт для изменения покупателя.
         /// </summary>
         /// <param name="id">Id покупателя.</param>
-        /// <param name="updatedCustomer">Изменненый покупатель.</param>
+        /// <param name="updatedCustomer">Измененный покупатель.</param>
         /// <returns>Измененный покупатель.</returns>
         [HttpPut("changeCustomer/{id}")]
         public ActionResult<Customer> ChangeCustomer(int id, CustomerDto updatedCustomer)
@@ -98,7 +98,7 @@ namespace oop_backend.Controllers
         /// Эндпоинт для удаления покупателя.
         /// </summary>
         /// <param name="id">Id покупателя.</param>
-        /// <returns></returns>
+        /// <returns>Статус запроса</returns>
         [HttpDelete("deleteCustomer/{id}")]
         public ActionResult DeleteCustomer(int id)
         {
