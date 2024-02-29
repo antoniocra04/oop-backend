@@ -98,7 +98,7 @@ namespace oop_backend.Controllers
         /// Эндпоинт для удаления покупателя.
         /// </summary>
         /// <param name="id">Id покупателя.</param>
-        /// <returns>Статус запроса</returns>
+        /// <returns>Статус запроса.</returns>
         [HttpDelete("deleteCustomer/{id}")]
         public ActionResult DeleteCustomer(int id)
         {

@@ -18,7 +18,7 @@ namespace oop_backend.Controllers
         private readonly DBContext _dbContext;
 
         /// <summary>
-        /// Создает экземпляр класса.<see cref="ItemController"/>
+        /// Создает экземпляр класса.<see cref="ItemController"/>.
         /// </summary>
         /// <param name="dbContext">Контекст данных для БД.</param>
         public ItemController(DBContext dbContext)
@@ -69,6 +69,7 @@ namespace oop_backend.Controllers
             item.Name = updatedItem.Name;
             item.Info = updatedItem.Info;
             item.Cost = updatedItem.Cost;
+            item.Category = updatedItem.Category;
 
             _dbContext.SaveChanges();
 

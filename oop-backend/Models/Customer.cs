@@ -57,7 +57,7 @@ namespace oop_backend.Models
         }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="CustomerDto"/>
+        /// Создает экземпляр класса <see cref="CustomerDto"/>.
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>

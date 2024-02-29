@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using oop_backend.Models.Utils;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
+﻿using oop_backend.Models.Utils;
 
 namespace oop_backend.Models
 {
