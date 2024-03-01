@@ -55,5 +55,10 @@ namespace oop_backend.Models
         /// </summary>
         public string Apartment { get; set; }
 
+        public string GetFullAddress() 
+        {
+            return Country + " " + City + " " + Building + " " + Apartment;
+        }
+
     }
 }

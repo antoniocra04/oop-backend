@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using oop_backend.Models;
 using oop_backend.Context;
+using System;
 
 namespace oop_backend.Controllers
 {
@@ -38,7 +39,11 @@ namespace oop_backend.Controllers
             сustomers.ForEachAsync(customer =>
             {
                 var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
-                result.Add(new CustomerDto(customer.Fullname, address, customer.Id));
+                var cart = _dbContext.Carts.SingleOrDefault(cart => cart.Id == customer.CartId);
+
+                var orders = _dbContext.Orders.Where(order => customer.Orders.Contains(order.Id)).ToArray();
+
+                result.Add(new CustomerDto(customer.Fullname, address, customer.Id, cart, orders));
             });
 
             return result;
@@ -52,8 +57,11 @@ namespace oop_backend.Controllers
         [HttpPost("createCustomer")]
         public ActionResult<Customer> CreateCustomer(CustomerDto newCustomer)
         {
-            _dbContext.Customers.Add(new Customer(newCustomer.Fullname, newCustomer.Address.Id));
+            int[] orders = newCustomer.Orders.Select(order => order.Id).ToArray();
+
+            _dbContext.Customers.Add(new Customer(newCustomer.Fullname, newCustomer.Address.Id, newCustomer.Cart.Id, orders));
             _dbContext.Addresses.Add(newCustomer.Address);
+            _dbContext.Carts.Add(newCustomer.Cart);
             _dbContext.SaveChanges();
 
             return StatusCode(200, newCustomer);
@@ -116,8 +124,52 @@ namespace oop_backend.Controllers
                 return NotFound();
             }
 
+            var cart = _dbContext.Carts.SingleOrDefault(cart => cart.Id == customer.CartId);
+
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
             _dbContext.Addresses.Remove(address);
             _dbContext.Customers.Remove(customer);
+            _dbContext.Carts.Remove(cart);
+            _dbContext.SaveChanges();
+
+            return StatusCode(200);
+        }
+
+        [HttpPost("createOrder")]
+        public ActionResult CreateOrder(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
+
+            if (address == null)
+            {
+                return NotFound();
+            }
+
+            var cart = _dbContext.Carts.SingleOrDefault(cart => cart.Id == customer.CartId);
+
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            DateTime dateTime = DateTime.UtcNow.Date;
+
+            Order newOrder = new Order(dateTime.ToString("dd/MM/yyyy"), address.GetFullAddress(), cart.Items, OrderStatusType.New);
+            customer.Orders = customer.Orders.Append(newOrder.Id).ToArray();
+            cart.Items = new int[0];
+
+            _dbContext.Orders.Add(newOrder);
             _dbContext.SaveChanges();
 
             return StatusCode(200);

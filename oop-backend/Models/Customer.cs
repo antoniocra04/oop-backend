@@ -16,12 +16,14 @@ namespace oop_backend.Models
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="addressId">Id адреса.</param>
-        public Customer(string fullname, int addressId)
+        public Customer(string fullname, int addressId, int cartId, int[] orders)
         {
             this.Id = IdGenerator.GetId();
 
             this.Fullname = fullname;
             this.AddressId = addressId;
+            this.CartId = cartId;
+            this.Orders = orders;
         }
 
         /// <summary>
@@ -39,6 +41,16 @@ namespace oop_backend.Models
         /// Возвращает и задает Id адреса покупателя.
         /// </summary>
         public int AddressId { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает Id корзины покупателя.
+        /// </summary>
+        public int CartId { get; set; }
+
+        /// <summary>
+        /// Список заказов
+        /// </summary>
+        public int[] Orders { get; set; }
     }
 
     public class CustomerDto
@@ -49,11 +61,13 @@ namespace oop_backend.Models
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
         /// <param name="Id">Id.</param>
-        public CustomerDto(string fullname, Address address, int id)
+        public CustomerDto(string fullname, Address address, int id, Cart cart, Order[] orders)
         {
             this.Id = id;
             this.Fullname = fullname;
             this.Address = address;
+            this.Cart = cart;
+            this.Orders = orders;
         }
 
         /// <summary>
@@ -62,12 +76,14 @@ namespace oop_backend.Models
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
         [JsonConstructor]
-        public CustomerDto(string fullname, Address address)
+        public CustomerDto(string fullname, Address address, Cart cart, Order[] orders)
         {
             this.Id = IdGenerator.GetId();
 
             this.Fullname = fullname;
             this.Address = address;
+            this.Cart = cart;
+            this.Orders = orders;
         }
 
         /// <summary>
@@ -85,5 +101,15 @@ namespace oop_backend.Models
         /// Адрес покупателя.
         /// </summary>
         public Address Address { get; set; }
+
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Список заказов.
+        /// </summary>
+        public Order[] Orders { get; set; }
     }
 }

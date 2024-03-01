@@ -25,8 +25,7 @@ namespace oop_backend.Models
         /// <summary>
         /// Возвращает и задает массив id продуктов.
         /// </summary>
-        [NotMapped]
-        public int[]? Items { get; set; }
+        public int[] Items { get; set; }
 
         /// <summary>
         /// Возвращает общую стоимость.
@@ -41,7 +40,7 @@ namespace oop_backend.Models
                 {
                     var item = dbContext.Items.FirstOrDefault(item => item.Id == this.Items[i]);
 
-                    if(item != null)
+                    if (item != null)
                     {
                         amount += item.Cost;
                     }
