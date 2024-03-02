@@ -13,7 +13,7 @@ namespace oop_backend.Models
     public class Item
     {
         /// <summary>
-        /// Создает экземпляр класса <see cref="Item"/>
+        /// Создает экземпляр класса <see cref="Item"/>.
         /// </summary>
         /// <param name="name">Имя продукта.</param>
         /// <param name="info">Информация продукта.</param>
