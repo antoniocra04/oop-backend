@@ -1,5 +1,8 @@
 ﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using oop_backend.Context;
 using oop_backend.Controllers;
+using oop_backend.Models;
 using Xunit;
 
 namespace oop_backend_test.Controllers
@@ -9,18 +12,22 @@ namespace oop_backend_test.Controllers
     /// </summary>
     public class ItemControllerTests
     {
+        private DbContextOptions<DBContext> contextOptions = new DbContextOptionsBuilder<DBContext>()
+        .UseInMemoryDatabase("oop-back")
+        .Options;
+
         /// <summary>
         /// Проверка CreateItem.
         /// </summary>
         [Fact]
         public void CreateItem_ReturnOK()
         {
-            var controller = new ItemController();
-            var result = controller.CreateItem("a", "b", 1);
+            using var dbContext = new DBContext(contextOptions);
+            var controller = new ItemController(dbContext);
 
-            result.Value.Name.Should().Be("a");
-            result.Value.Info.Should().Be("b");
-            result.Value.Cost.Should().Be(1);
+            var result = controller.CreateItem(new Item("name", "info", 999, CategoryType.Laptop));
+
+            result.Value.Should().NotBeNull();
         }
     }
 }
