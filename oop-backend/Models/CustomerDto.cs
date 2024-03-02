@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace oop_backend.Models
 {
     /// <summary>
-    /// Хранит данные покупателя получаемые в запросе
+    /// Хранит данные покупателя получаемые в запросе.
     /// </summary>
     public class CustomerDto
     {
