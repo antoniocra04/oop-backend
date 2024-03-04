@@ -40,21 +40,25 @@ namespace oop_backend.Models
         /// <summary>
         /// Возвращает и задает страну.
         /// </summary>
+        [StringLength(50, ErrorMessage = " Страна должна быть меньше 50 символов")]
         public string Country { get; set; }
 
         /// <summary>
         /// Возвращает и задает город.
         /// </summary>
+        [StringLength(30, ErrorMessage = " Город должен быть меньше 30 символов")]
         public string City { get; set; }
 
         /// <summary>
         /// Возвращает и задает дом.
         /// </summary>
+        [StringLength(20, ErrorMessage = "Дом должен быть меньше 20 символов")]
         public string Building { get; set; }
 
         /// <summary>
         /// Возвращает и задает квартиру.
         /// </summary>
+        [StringLength(10, ErrorMessage = " Квартира должна быть меньше 10 символов")]
         public string Apartment { get; set; }
 
     }
