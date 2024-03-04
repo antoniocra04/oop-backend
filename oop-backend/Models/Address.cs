@@ -1,4 +1,5 @@
 ﻿using oop_backend.Models.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace oop_backend.Models
 {
@@ -15,7 +16,7 @@ namespace oop_backend.Models
         /// <param name="city">Город.</param>
         /// <param name="building">Дом.</param>
         /// <param name="apartment">Квартира.</param>
-        public Address(int index, string country, string city, string building, string apartment)
+        public Address(string index, string country, string city, string building, string apartment)
         {
             this.Id = IdGenerator.GetId();
             this.Index = index;
@@ -33,7 +34,8 @@ namespace oop_backend.Models
         /// <summary>
         /// Возвращает и задает индекс.
         /// </summary>
-        public int Index { get; set; }
+        [RegularExpression(@"^[0-9]{6}$", ErrorMessage = "Characters are not allowed.")]
+        public string Index { get; set; }
 
         /// <summary>
         /// Возвращает и задает страну.
