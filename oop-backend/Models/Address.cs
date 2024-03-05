@@ -34,19 +34,19 @@ namespace oop_backend.Models
         /// <summary>
         /// Возвращает и задает индекс.
         /// </summary>
-        [RegularExpression(@"^[0-9]{6}$", ErrorMessage = "Characters are not allowed.")]
+        [RegularExpression(@"^[0-9]{6}$", ErrorMessage = "Неверный формат индекса")]
         public string Index { get; set; }
 
         /// <summary>
         /// Возвращает и задает страну.
         /// </summary>
-        [StringLength(50, ErrorMessage = " Страна должна быть меньше 50 символов")]
+        [StringLength(50, ErrorMessage = "Страна должна быть меньше 50 символов")]
         public string Country { get; set; }
 
         /// <summary>
         /// Возвращает и задает город.
         /// </summary>
-        [StringLength(30, ErrorMessage = " Город должен быть меньше 30 символов")]
+        [StringLength(30, ErrorMessage = "Город должен быть меньше 30 символов")]
         public string City { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace oop_backend.Models
         /// <summary>
         /// Возвращает и задает квартиру.
         /// </summary>
-        [StringLength(10, ErrorMessage = " Квартира должна быть меньше 10 символов")]
+        [StringLength(10, ErrorMessage = "Квартира должна быть меньше 10 символов")]
         public string Apartment { get; set; }
 
     }

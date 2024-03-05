@@ -37,18 +37,18 @@ namespace oop_backend.Models
         }
 
         /// <summary>
-        /// Id покупателя.
+        /// Возвращает Id покупателя.
         /// </summary>
         public int Id { get; }
 
         /// <summary>
-        /// Полное имя покупателя.
+        /// Возвращает и задает полное имя покупателя.
         /// </summary>
         [StringLength(200, ErrorMessage = "Имя должно быть меньше 200 символов")]
         public string Fullname { get; set; }
 
         /// <summary>
-        /// Адрес покупателя.
+        /// Возвращает и задает адрес покупателя.
         /// </summary>
         public Address Address { get; set; }
     }

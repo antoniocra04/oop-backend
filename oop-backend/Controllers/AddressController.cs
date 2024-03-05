@@ -18,7 +18,7 @@ namespace oop_backend.Controllers
         private readonly DBContext _dbContext;
 
         /// <summary>
-        /// Создает экземпляр класса.<see cref="CustomerController"/>.
+        /// Создает экземпляр класса <see cref="CustomerController"/>.
         /// </summary>
         /// <param name="dbContext">Контекст данных для БД.</param>
         public AddressController(DBContext dbContext)

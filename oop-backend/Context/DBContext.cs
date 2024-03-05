@@ -18,17 +18,17 @@ namespace oop_backend.Context
         {}
 
         /// <summary>
-        /// Товары.
+        /// Возвращает и задает овары.
         /// </summary>
         public DbSet<Item> Items { get; set; }
 
         /// <summary>
-        /// Покупатели.
+        /// Возвращает и задает покупатели.
         /// </summary>
         public DbSet<Customer> Customers { get; set; }
 
         /// <summary>
-        /// Адреса.
+        /// Возвращает и задает адреса.
         /// </summary>
         public DbSet<Address> Addresses { get; set; }
 
