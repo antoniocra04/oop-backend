@@ -26,7 +26,7 @@ namespace oop_backend_test.Controllers
             using var dbContext = new DBContext(contextOptions);
             var controller = new CustomerController(dbContext);
 
-            CustomerDto newCustomer = new CustomerDto("Anton", new Address(999999, "Russia", "Tomsk", "building", "21"));
+            CustomerDto newCustomer = new CustomerDto("Anton", new Address("999999", "Russia", "Tomsk", "building", "21"));
             
             var result = controller.CreateCustomer(newCustomer);
             Debug.WriteLine(result);

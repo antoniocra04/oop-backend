@@ -18,12 +18,12 @@ namespace oop_backend.Context
         {}
 
         /// <summary>
-        /// Возвращает и задает овары.
+        /// Возвращает и задает товары.
         /// </summary>
         public DbSet<Item> Items { get; set; }
 
         /// <summary>
-        /// Возвращает и задает покупатели.
+        /// Возвращает и задает покупателей.
         /// </summary>
         public DbSet<Customer> Customers { get; set; }
 
