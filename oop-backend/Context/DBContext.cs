@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using oop_backend.Models;
-using System.Reflection.Metadata;
 
 namespace oop_backend.Context
 {
@@ -20,17 +19,17 @@ namespace oop_backend.Context
         {}
 
         /// <summary>
-        /// Товары.
+        /// Возвращает и задает товары.
         /// </summary>
         public DbSet<Item> Items { get; set; }
 
         /// <summary>
-        /// Покупатели.
+        /// Возвращает и задает покупателей.
         /// </summary>
         public DbSet<Customer> Customers { get; set; }
 
         /// <summary>
-        /// Адреса.
+        /// Возвращает и задает адреса.
         /// </summary>
         public DbSet<Address> Addresses { get; set; }
 
