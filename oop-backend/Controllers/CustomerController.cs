@@ -18,7 +18,7 @@ namespace oop_backend.Controllers
         private readonly DBContext _dbContext;
 
         /// <summary>
-        /// Создает экземпляр класса.<see cref="CustomerController"/>
+        /// Создает экземпляр класса <see cref="CustomerController"/>.
         /// </summary>
         /// <param name="dbContext">Контекст данных для БД.</param>
         public CustomerController(DBContext dbContext)
@@ -31,9 +31,17 @@ namespace oop_backend.Controllers
         /// </summary>
         /// <returns>Список всех покупателей.</returns>
         [HttpGet("getAllCustomers")]
-        public ActionResult<DbSet<Customer>> GetAllCustomers()
+        public ActionResult<List<CustomerDto>> GetAllCustomers()
         {
-            return _dbContext.Customers;
+            var сustomers = _dbContext.Customers;
+            List<CustomerDto> result = new List<CustomerDto>();
+            сustomers.ForEachAsync(customer =>
+            {
+                var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
+                result.Add(new CustomerDto(customer.Fullname, address, customer.Id));
+            });
+
+            return result;
         }
 
         /// <summary>
@@ -42,22 +50,23 @@ namespace oop_backend.Controllers
         /// <param name="newCustomer">Новый покупатель.</param>
         /// <returns>Новый покупатель.</returns>
         [HttpPost("createCustomer")]
-        public ActionResult<Customer> CreateCustomer(Customer newCustomer)
+        public ActionResult<Customer> CreateCustomer(CustomerDto newCustomer)
         {
-            _dbContext.Add(newCustomer);
+            _dbContext.Customers.Add(new Customer(newCustomer.Fullname, newCustomer.Address.Id));
+            _dbContext.Addresses.Add(newCustomer.Address);
             _dbContext.SaveChanges();
 
-            return newCustomer;
+            return StatusCode(200, newCustomer);
         }
 
         /// <summary>
         /// Эндпоинт для изменения покупателя.
         /// </summary>
         /// <param name="id">Id покупателя.</param>
-        /// <param name="updatedCustomer">Изменненый покупатель.</param>
+        /// <param name="updatedCustomer">Измененный покупатель.</param>
         /// <returns>Измененный покупатель.</returns>
         [HttpPut("changeCustomer/{id}")]
-        public ActionResult<Customer> ChangeCustomer(int id, Customer updatedCustomer)
+        public ActionResult<Customer> ChangeCustomer(int id, CustomerDto updatedCustomer)
         {
             var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
 
@@ -67,10 +76,51 @@ namespace oop_backend.Controllers
             }
 
             customer.Fullname = updatedCustomer.Fullname;
-            customer.Address = updatedCustomer.Address;
+
+            var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
+
+            if (address == null)
+            {
+                return NotFound();
+            }
+
+            address.Index = updatedCustomer.Address.Index;
+            address.Country = updatedCustomer.Address.Country;
+            address.City = updatedCustomer.Address.City;
+            address.Building = updatedCustomer.Address.Building;
+            address.Apartment = updatedCustomer.Address.Apartment;
 
             _dbContext.SaveChanges();
-            return updatedCustomer;
+            return StatusCode(200, updatedCustomer);
+        }
+
+        /// <summary>
+        /// Эндпоинт для удаления покупателя.
+        /// </summary>
+        /// <param name="id">Id покупателя.</param>
+        /// <returns>Статус запроса.</returns>
+        [HttpDelete("deleteCustomer/{id}")]
+        public ActionResult DeleteCustomer(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            
+            var address = _dbContext.Addresses.SingleOrDefault(address => address.Id == customer.AddressId);
+
+            if (address == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Addresses.Remove(address);
+            _dbContext.Customers.Remove(customer);
+            _dbContext.SaveChanges();
+
+            return StatusCode(200);
         }
     }
 }

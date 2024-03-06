@@ -18,7 +18,7 @@ namespace oop_backend.Controllers
         private readonly DBContext _dbContext;
 
         /// <summary>
-        /// Создает экземпляр класса.<see cref="ItemController"/>
+        /// Создает экземпляр класса.<see cref="ItemController"/>.
         /// </summary>
         /// <param name="dbContext">Контекст данных для БД.</param>
         public ItemController(DBContext dbContext)
@@ -69,10 +69,32 @@ namespace oop_backend.Controllers
             item.Name = updatedItem.Name;
             item.Info = updatedItem.Info;
             item.Cost = updatedItem.Cost;
+            item.Category = updatedItem.Category;
 
             _dbContext.SaveChanges();
 
             return updatedItem;
+        }
+        
+        /// <summary>
+        /// Эндпоинт для удаления продукта.
+        /// </summary>
+        /// <param name="id">Id продукта.</param>
+        /// <returns>Статус запроса</returns>
+        [HttpDelete("deleteItem/{id}")]
+        public ActionResult DeleteItem(int id)
+        {
+            var item = _dbContext.Items.SingleOrDefault(item => item.Id == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Items.Remove(item);
+            _dbContext.SaveChanges();
+
+            return StatusCode(200);
         }
     }
 }

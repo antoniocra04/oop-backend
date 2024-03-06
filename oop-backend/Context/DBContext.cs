@@ -5,12 +5,12 @@ namespace oop_backend.Context
 {
 
     /// <summary>
-    /// БД.
+    /// Контекст данных для БД.
     /// </summary>
     public class DBContext: DbContext
     {
         /// <summary>
-        /// Создает экземпляр класса <see cref="DBContext"/>
+        /// Создает экземпляр класса <see cref="DBContext"/>.
         /// </summary>
         /// <param name="options">Дополнительные параметры для бд.</param>
         public DBContext(DbContextOptions options)
@@ -18,14 +18,19 @@ namespace oop_backend.Context
         {}
 
         /// <summary>
-        /// Товары.
+        /// Возвращает и задает товары.
         /// </summary>
         public DbSet<Item> Items { get; set; }
 
         /// <summary>
-        /// Покупатели.
+        /// Возвращает и задает покупателей.
         /// </summary>
         public DbSet<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает адреса.
+        /// </summary>
+        public DbSet<Address> Addresses { get; set; }
 
         /// <summary>
         /// Метод переопределения стандартных настроек бд.
@@ -33,8 +38,9 @@ namespace oop_backend.Context
         /// <param name="modelBuilder">Класс для конфигурирования бд.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Item>().HasAlternateKey(i => i.Id);
-            modelBuilder.Entity<Customer>().HasAlternateKey(c => c.Id);
+            modelBuilder.Entity<Item>().HasAlternateKey(item => item.Id);
+            modelBuilder.Entity<Customer>().HasAlternateKey(customer => customer.Id);
+            modelBuilder.Entity<Address>().HasAlternateKey(address => address.Id);
         }
     }
 }

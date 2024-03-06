@@ -11,33 +11,32 @@ namespace oop_backend.Models
     public class Customer
     {
         /// <summary>
-        /// Создает экземпляр класса <see cref="Customer"/>
+        /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
-        /// <param name="address">Адрес.</param>
-        public Customer(string fullname, string address)
+        /// <param name="addressId">Id адреса.</param>
+        public Customer(string fullname, int addressId)
         {
             this.Id = IdGenerator.GetId();
 
             this.Fullname = fullname;
-            this.Address = address;
+            this.AddressId = addressId;
         }
 
         /// <summary>
-        /// Id покупателя.
+        /// Возвращает Id покупателя.
         /// </summary>
         public int Id { get; }
 
         /// <summary>
-        /// Полное имя покупателя.
+        /// Возвращает и задает полное имя покупателя.
         /// </summary>
         [StringLength(200, ErrorMessage = "Имя должно быть меньше 200 символов")]
         public string Fullname { get; set; }
 
         /// <summary>
-        /// Адрес покупателя.
+        /// Возвращает и задает Id адреса покупателя.
         /// </summary>
-        [StringLength(500, ErrorMessage = "Адрес должен быть меньше 500 символов")]
-        public string Address { get; set; }
+        public int AddressId { get; set; }
     }
 }
