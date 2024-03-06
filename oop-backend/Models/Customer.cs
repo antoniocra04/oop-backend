@@ -51,4 +51,5 @@ namespace oop_backend.Models
         /// </summary>
         public int[] Orders { get; set; }
     }
+
 }

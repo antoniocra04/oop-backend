@@ -139,6 +139,11 @@ namespace oop_backend.Controllers
             return StatusCode(200);
         }
 
+        /// <summary>
+        /// Эндпоинт для создания заказа.
+        /// </summary>
+        /// <param name="id">Id покупателя.</param>
+        /// <returns>Статус запроса.</returns>
         [HttpPost("createOrder")]
         public ActionResult CreateOrder(int id)
         {
@@ -174,5 +179,73 @@ namespace oop_backend.Controllers
 
             return StatusCode(200);
         }
+
+        /// <summary>
+        /// Эндпоинт для добавления продукта в корзину.
+        /// </summary>
+        /// <param name="id">Id покупателя.</param>
+        /// <param name="itemId"></param>
+        /// <returns>Статус запроса.</returns>
+        [HttpPost("addItemInCart")]
+        public ActionResult AddItemInCart(int id, int itemId)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var cart = _dbContext.Carts.SingleOrDefault(cart => cart.Id == customer.CartId);
+
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            var item = _dbContext.Items.SingleOrDefault(item => item.Id == itemId);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            cart.Items = cart.Items.Append(itemId).ToArray();
+
+            _dbContext.SaveChanges();
+
+            return StatusCode(200);
+        }
+
+        [HttpDelete("deleteItemFromCart")]
+        public ActionResult DeleteItemFromCart(int id, int itemId)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(customer => customer.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var cart = _dbContext.Carts.SingleOrDefault(cart => cart.Id == customer.CartId);
+
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            var item = _dbContext.Items.SingleOrDefault(item => item.Id == itemId);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            cart.Items = cart.Items.Where(item => item != itemId).ToArray();  
+            _dbContext.SaveChanges();
+            
+            return StatusCode(200);
+        }
+
     }
 }

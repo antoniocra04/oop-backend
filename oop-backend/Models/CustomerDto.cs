@@ -15,11 +15,13 @@ namespace oop_backend.Models
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
         /// <param name="Id">Id.</param>
-        public CustomerDto(string fullname, Address address, int id)
+        public CustomerDto(string fullname, Address address, int id, Cart cart, Order[] orders)
         {
             this.Id = id;
             this.Fullname = fullname;
             this.Address = address;
+            this.Cart = cart;
+            this.Orders = orders;
         }
 
         /// <summary>
@@ -28,12 +30,14 @@ namespace oop_backend.Models
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
         [JsonConstructor]
-        public CustomerDto(string fullname, Address address)
+        public CustomerDto(string fullname, Address address, Cart cart, Order[] orders)
         {
             this.Id = IdGenerator.GetId();
 
             this.Fullname = fullname;
             this.Address = address;
+            this.Cart = cart;
+            this.Orders = orders;
         }
 
         /// <summary>
@@ -51,5 +55,15 @@ namespace oop_backend.Models
         /// Возвращает и задает адрес покупателя.
         /// </summary>
         public Address Address { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает корзину покупателя.
+        /// </summary>
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает список заказов.
+        /// </summary>
+        public Order[] Orders { get; set; }
     }
 }
