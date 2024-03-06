@@ -184,7 +184,7 @@ namespace oop_backend.Controllers
         /// Эндпоинт для добавления продукта в корзину.
         /// </summary>
         /// <param name="id">Id покупателя.</param>
-        /// <param name="itemId"></param>
+        /// <param name="itemId">Id продукта.</param>
         /// <returns>Статус запроса.</returns>
         [HttpPost("addItemInCart")]
         public ActionResult AddItemInCart(int id, int itemId)
@@ -217,6 +217,12 @@ namespace oop_backend.Controllers
             return StatusCode(200);
         }
 
+        /// <summary>
+        /// Эндпоинт для удаления продукта из корзину.
+        /// </summary>
+        /// <param name="id">Id покупателя.</param>
+        /// <param name="itemId">Id продукта.</param>
+        /// <returns>Статус запроса.</returns>
         [HttpDelete("deleteItemFromCart")]
         public ActionResult DeleteItemFromCart(int id, int itemId)
         {

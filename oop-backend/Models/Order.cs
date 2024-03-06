@@ -10,6 +10,22 @@ namespace oop_backend.Models
     public class Order
     {
         /// <summary>
+        /// Создает экземпляр класса <see cref="Order"/>.
+        /// </summary>
+        /// <param name="createDate">Дата создания заказа.</param>
+        /// <param name="deliveryAddress">Адрес доставки.</param>
+        /// <param name="items">Список продуктов.</param>
+        /// <param name="orderStatus">Статус заказа.</param>
+        public Order(string createDate, string deliveryAddress, int[] items, OrderStatusType orderStatus)
+        {
+            this.Id = IdGenerator.GetId();
+            this.Items = items;
+            this.DeliveryAddress = deliveryAddress;
+            this.OrderStatus = orderStatus;
+            this.CreateDate = createDate;
+        }
+
+        /// <summary>
         /// Контекст бд.
         /// </summary>
         private DbContextOptions<DBContext> contextOptions = new DbContextOptionsBuilder<DBContext>()
@@ -64,21 +80,5 @@ namespace oop_backend.Models
         /// Возвращает и задает статус заказа.
         /// </summary>
         public OrderStatusType OrderStatus { get; set; }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Order"/>.
-        /// </summary>
-        /// <param name="createDate">Дата создания заказа.</param>
-        /// <param name="deliveryAddress">Адрес доставки.</param>
-        /// <param name="items">Список продуктов.</param>
-        /// <param name="orderStatus">Статус заказа.</param>
-        public Order(string createDate, string deliveryAddress, int[] items, OrderStatusType orderStatus)
-        {
-            this.Id = IdGenerator.GetId();
-            this.Items = items;
-            this.DeliveryAddress = deliveryAddress;
-            this.OrderStatus = orderStatus;
-            this.CreateDate = createDate;
-        }
     }
 }

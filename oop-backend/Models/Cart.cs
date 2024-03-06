@@ -11,9 +11,19 @@ namespace oop_backend.Models
     public class Cart
     {
         /// <summary>
+        /// Создает экземпляр класса <see cref="Cart"/>.
+        /// </summary>
+        /// <param name="items">Массив id продуктов.</param>
+        public Cart(int[] items)
+        {
+            this.Id = IdGenerator.GetId();
+            this.Items = items;
+        }
+
+        /// <summary>
         /// Контекст бд.
         /// </summary>
-         private DbContextOptions<DBContext> contextOptions = new DbContextOptionsBuilder<DBContext>()
+        private DbContextOptions<DBContext> contextOptions = new DbContextOptionsBuilder<DBContext>()
         .UseInMemoryDatabase("oop-back")
         .Options;
 
@@ -50,16 +60,5 @@ namespace oop_backend.Models
 
             } 
         }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Cart"/>.
-        /// </summary>
-        /// <param name="items">Массив id продуктов.</param>
-        public Cart(int[] items)
-        {
-            this.Id = IdGenerator.GetId();
-            this.Items = items;
-        }
-
     }
 }
