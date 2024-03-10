@@ -15,14 +15,16 @@ namespace oop_backend.Models
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="addressId">Id адреса.</param>
-        public Customer(string fullname, int addressId, int cartId, int[] orders)
+        /// <param name="cartId">Id корзины.</param>
+        /// <param name="ordersIds">Заказы.</param>
+        public Customer(string fullname, int addressId, int cartId, int[] ordersIds)
         {
             this.Id = IdGenerator.GetId();
 
             this.Fullname = fullname;
             this.AddressId = addressId;
             this.CartId = cartId;
-            this.Orders = orders;
+            this.OrdersIds = ordersIds;
         }
 
         /// <summary>
@@ -47,9 +49,9 @@ namespace oop_backend.Models
         public int CartId { get; set; }
 
         /// <summary>
-        /// Список заказов
+        /// Возвращает и задает список заказов
         /// </summary>
-        public int[] Orders { get; set; }
+        public int[] OrdersIds { get; set; }
     }
 
 }

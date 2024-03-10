@@ -4,7 +4,6 @@ using oop_backend.Models;
 
 namespace oop_backend.Context
 {
-
     /// <summary>
     /// Контекст данных для БД.
     /// </summary>
@@ -34,12 +33,12 @@ namespace oop_backend.Context
         public DbSet<Address> Addresses { get; set; }
 
         /// <summary>
-        /// Корзины.
+        /// Возвращает и задает корзины.
         /// </summary>
         public DbSet<Cart> Carts { get; set; }
 
         /// <summary>
-        /// Заказы.
+        /// Возвращает и задает заказы.
         /// </summary>
         public DbSet<Order> Orders { get; set; }
 
@@ -57,7 +56,7 @@ namespace oop_backend.Context
             modelBuilder.Entity<Address>().HasAlternateKey(address => address.Id);
 
             modelBuilder.Entity<Customer>().HasAlternateKey(customer => customer.Id);
-            modelBuilder.Entity<Customer>().Property(customer => customer.Orders).HasConversion(converter);
+            modelBuilder.Entity<Customer>().Property(customer => customer.OrdersIds).HasConversion(converter);
 
             modelBuilder.Entity<Cart>().HasAlternateKey(cart => cart.Id);
             modelBuilder.Entity<Cart>().Property(cart => cart.Items).HasConversion(converter);

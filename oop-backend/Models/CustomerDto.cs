@@ -29,6 +29,8 @@ namespace oop_backend.Models
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
+        /// <param name="cart">Id корзины.</param>
+        /// <param name="orders">Заказы.</param>
         [JsonConstructor]
         public CustomerDto(string fullname, Address address, Cart cart, Order[] orders)
         {

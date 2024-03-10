@@ -63,7 +63,7 @@ namespace oop_backend.Models
 
         public string GetFullAddress() 
         {
-            return Country + " " + City + " " + Building + " " + Apartment;
+            return Country + " " + City + " " + Building + " " + Apartment + " " + Index;
         }
 
     }

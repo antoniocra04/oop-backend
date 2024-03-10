@@ -10,6 +10,13 @@ namespace oop_backend.Models
     public class Order
     {
         /// <summary>
+        /// Контекст бд.
+        /// </summary>
+        private DbContextOptions<DBContext> contextOptions = new DbContextOptionsBuilder<DBContext>()
+           .UseInMemoryDatabase("oop-back")
+           .Options;
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>.
         /// </summary>
         /// <param name="createDate">Дата создания заказа.</param>
@@ -24,13 +31,6 @@ namespace oop_backend.Models
             this.OrderStatus = orderStatus;
             this.CreateDate = createDate;
         }
-
-        /// <summary>
-        /// Контекст бд.
-        /// </summary>
-        private DbContextOptions<DBContext> contextOptions = new DbContextOptionsBuilder<DBContext>()
-       .UseInMemoryDatabase("oop-back")
-       .Options;
 
         /// <summary>
         /// Возвращает Id покупателя.
@@ -51,6 +51,11 @@ namespace oop_backend.Models
         /// Возвращает и задает массив id продуктов.
         /// </summary>
         public int[] Items { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает статус заказа.
+        /// </summary>
+        public OrderStatusType OrderStatus { get; set; }
 
         /// <summary>
         /// Возвращает общую стоимость.
@@ -75,10 +80,5 @@ namespace oop_backend.Models
 
             }
         }
-
-        /// <summary>
-        /// Возвращает и задает статус заказа.
-        /// </summary>
-        public OrderStatusType OrderStatus { get; set; }
     }
 }
